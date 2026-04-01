@@ -1,0 +1,1643 @@
+{
+  "1A": {
+    "monday": [
+      "physics",
+      "english"
+    ],
+    "tuesday": [],
+    "wednesday": [
+      "physics"
+    ],
+    "thursday": [],
+    "friday": [
+      "probability"
+    ]
+  },
+  "1B": {
+    "monday": [
+      "horizons"
+    ],
+    "tuesday": [
+      "talks",
+      "chemistry",
+      "math",
+      "pe",
+      "math",
+      "russian"
+    ],
+    "wednesday": [
+      "russian",
+      "math",
+      "russian",
+      "labor",
+      "music",
+      "literature",
+      "algebra",
+      "math",
+      "physics",
+      "math",
+      "russian",
+      "world"
+    ],
+    "thursday": [
+      "literature",
+      "math",
+      "labor",
+      "art",
+      "russian",
+      "music",
+      "biology"
+    ],
+    "friday": [
+      "literature",
+      "world",
+      "russian",
+      "math",
+      "art"
+    ]
+  },
+  "1V": {
+    "monday": [
+      "talks",
+      "math",
+      "russian",
+      "music"
+    ],
+    "tuesday": [
+      "algebra",
+      "russian",
+      "math",
+      "art"
+    ],
+    "wednesday": [
+      "algebra",
+      "russian",
+      "math",
+      "pe"
+    ],
+    "thursday": [
+      "algebra",
+      "russian",
+      "labor"
+    ],
+    "friday": [
+      "pe",
+      "algebra",
+      "russian",
+      "math"
+    ]
+  },
+  "1G": {
+    "monday": [
+      "talks",
+      "lit_reading",
+      "russian",
+      "math",
+      "pe"
+    ],
+    "tuesday": [
+      "russian",
+      "algebra",
+      "art"
+    ],
+    "wednesday": [
+      "russian",
+      "math"
+    ],
+    "thursday": [
+      "lit_reading",
+      "russian",
+      "music"
+    ],
+    "friday": [
+      "pe",
+      "math",
+      "russian"
+    ]
+  },
+  "2A": {
+    "monday": [
+      "talks",
+      "russian",
+      "math",
+      "english"
+    ],
+    "tuesday": [
+      "russian",
+      "math",
+      "pe"
+    ],
+    "wednesday": [
+      "russian",
+      "math"
+    ],
+    "thursday": [
+      "russian"
+    ],
+    "friday": [
+      "english",
+      "lit_reading",
+      "russian",
+      "math",
+      "geography"
+    ]
+  },
+  "2B": {
+    "monday": [
+      "talks",
+      "literature",
+      "russian",
+      "math",
+      "world"
+    ],
+    "tuesday": [
+      "lit_reading",
+      "russian",
+      "english",
+      "russian",
+      "math",
+      "pe",
+      "math"
+    ],
+    "wednesday": [
+      "music",
+      "russian",
+      "math",
+      "literature",
+      "russian",
+      "art"
+    ],
+    "thursday": [
+      "world",
+      "russian",
+      "art"
+    ],
+    "friday": [
+      "labor",
+      "math",
+      "russian"
+    ]
+  },
+  "2V": {
+    "monday": [
+      "talks",
+      "russian",
+      "math",
+      "algebra",
+      "world"
+    ],
+    "tuesday": [
+      "geography",
+      "math",
+      "russian",
+      "chemistry",
+      "music"
+    ],
+    "wednesday": [
+      "russian",
+      "math",
+      "algebra",
+      "russian"
+    ],
+    "thursday": [
+      "labor",
+      "russian",
+      "art"
+    ],
+    "friday": [
+      "algebra",
+      "math",
+      "russian",
+      "english"
+    ]
+  },
+  "2G": {
+    "monday": [],
+    "tuesday": [],
+    "wednesday": [],
+    "thursday": [],
+    "friday": []
+  },
+  "2D": {
+    "monday": [
+      "talks"
+    ],
+    "tuesday": [
+      "lit_reading",
+      "russian",
+      "physics"
+    ],
+    "wednesday": [
+      "lit_reading"
+    ],
+    "thursday": [
+      "russian",
+      "physics",
+      "probability"
+    ],
+    "friday": [
+      "lit_reading"
+    ]
+  },
+  "2E": {
+    "monday": [
+      "talks"
+    ],
+    "tuesday": [
+      "physics"
+    ],
+    "wednesday": [
+      "russian",
+      "lit_reading",
+      "russian"
+    ],
+    "thursday": [],
+    "friday": [
+      "russian"
+    ]
+  },
+  "3A": {
+    "monday": [
+      "social",
+      "talks",
+      "russian",
+      "math",
+      "algebra",
+      "physics",
+      "social",
+      "world"
+    ],
+    "tuesday": [
+      "math",
+      "literature",
+      "art",
+      "russian"
+    ],
+    "wednesday": [
+      "social",
+      "music",
+      "math",
+      "literature",
+      "english",
+      "russian"
+    ],
+    "thursday": [
+      "social",
+      "art",
+      "algebra",
+      "world",
+      "russian",
+      "social",
+      "labor"
+    ],
+    "friday": [
+      "math",
+      "chemistry",
+      "russian",
+      "physics"
+    ]
+  },
+  "3B": {
+    "monday": [
+      "algebra",
+      "russian",
+      "math",
+      "physics"
+    ],
+    "tuesday": [
+      "algebra",
+      "math",
+      "chemistry",
+      "russian",
+      "labor"
+    ],
+    "wednesday": [
+      "music",
+      "math",
+      "horizons",
+      "russian"
+    ],
+    "thursday": [
+      "art",
+      "math",
+      "algebra",
+      "russian"
+    ],
+    "friday": [
+      "algebra",
+      "russian",
+      "chemistry",
+      "physics"
+    ]
+  },
+  "3V": {
+    "monday": [
+      "talks",
+      "russian",
+      "math",
+      "algebra",
+      "talks"
+    ],
+    "tuesday": [
+      "music",
+      "english",
+      "algebra",
+      "math",
+      "russian",
+      "algebra",
+      "russian",
+      "math"
+    ],
+    "wednesday": [
+      "russian",
+      "math",
+      "algebra",
+      "art"
+    ],
+    "thursday": [
+      "labor",
+      "english"
+    ],
+    "friday": [
+      "russian"
+    ]
+  },
+  "3G": {
+    "monday": [
+      "talks",
+      "russian",
+      "math",
+      "art"
+    ],
+    "tuesday": [
+      "lit_reading",
+      "math",
+      "russian"
+    ],
+    "wednesday": [
+      "russian",
+      "lit_reading",
+      "math",
+      "russian"
+    ],
+    "thursday": [
+      "world",
+      "geography",
+      "russian",
+      "math",
+      "russian",
+      "physics"
+    ],
+    "friday": []
+  },
+  "4A": {
+    "monday": [
+      "talks",
+      "math",
+      "russian"
+    ],
+    "tuesday": [
+      "lit_reading",
+      "russian",
+      "math",
+      "music"
+    ],
+    "wednesday": [
+      "russian",
+      "math",
+      "russian"
+    ],
+    "thursday": [
+      "russian",
+      "art"
+    ],
+    "friday": [
+      "russian",
+      "math",
+      "social",
+      "labor"
+    ]
+  },
+  "4B": {
+    "monday": [],
+    "tuesday": [],
+    "wednesday": [],
+    "thursday": [],
+    "friday": []
+  },
+  "4V": {
+    "monday": [
+      "talks",
+      "math",
+      "russian"
+    ],
+    "tuesday": [
+      "russian",
+      "math",
+      "art",
+      "history"
+    ],
+    "wednesday": [
+      "lit_reading",
+      "russian",
+      "math",
+      "english",
+      "labor"
+    ],
+    "thursday": [
+      "russian"
+    ],
+    "friday": [
+      "russian",
+      "math",
+      "russian"
+    ]
+  },
+  "4G": {
+    "monday": [
+      "talks",
+      "russian",
+      "math"
+    ],
+    "tuesday": [
+      "russian",
+      "math",
+      "art",
+      "history"
+    ],
+    "wednesday": [
+      "russian",
+      "english",
+      "math"
+    ],
+    "thursday": [
+      "russian"
+    ],
+    "friday": [
+      "math",
+      "russian",
+      "world",
+      "russian"
+    ]
+  },
+  "4D": {
+    "monday": [
+      "talks",
+      "russian",
+      "math",
+      "music"
+    ],
+    "tuesday": [
+      "lit_reading",
+      "russian",
+      "math"
+    ],
+    "wednesday": [
+      "lit_reading",
+      "russian",
+      "math",
+      "labor"
+    ],
+    "thursday": [
+      "lit_reading",
+      "physics",
+      "russian",
+      "social"
+    ],
+    "friday": [
+      "lit_reading",
+      "russian",
+      "math",
+      "world",
+      "english"
+    ]
+  },
+  "5A": {
+    "monday": [],
+    "tuesday": [
+      "physics"
+    ],
+    "wednesday": [],
+    "thursday": [
+      "probability"
+    ],
+    "friday": [
+      "russian"
+    ]
+  },
+  "5B": {
+    "monday": [
+      "labor"
+    ],
+    "tuesday": [
+      "talks",
+      "social",
+      "labor",
+      "math",
+      "russian",
+      "algebra",
+      "music",
+      "choreo",
+      "literature",
+      "geography",
+      "math",
+      "russian"
+    ],
+    "wednesday": [
+      "russian",
+      "choreo",
+      "pe",
+      "literature",
+      "math",
+      "labor"
+    ],
+    "thursday": [
+      "russian",
+      "art",
+      "algebra",
+      "english",
+      "math"
+    ],
+    "friday": [
+      "math",
+      "pe",
+      "english",
+      "russian"
+    ]
+  },
+  "5V": {
+    "monday": [
+      "talks",
+      "geography",
+      "english",
+      "algebra",
+      "math"
+    ],
+    "tuesday": [
+      "russian",
+      "english",
+      "math",
+      "art"
+    ],
+    "wednesday": [
+      "music",
+      "math",
+      "russian",
+      "labor",
+      "algebra"
+    ],
+    "thursday": [
+      "english",
+      "math",
+      "history",
+      "pe",
+      "horizons",
+      "algebra"
+    ],
+    "friday": [
+      "algebra",
+      "pe",
+      "russian",
+      "math",
+      "labor"
+    ]
+  },
+  "5G": {
+    "monday": [
+      "talks",
+      "math",
+      "pe",
+      "history",
+      "music"
+    ],
+    "tuesday": [
+      "english",
+      "math",
+      "history",
+      "russian",
+      "pe"
+    ],
+    "wednesday": [
+      "russian",
+      "math",
+      "history",
+      "labor",
+      "russian"
+    ],
+    "thursday": [
+      "math",
+      "geography",
+      "russian",
+      "art"
+    ],
+    "friday": [
+      "english",
+      "math",
+      "russian",
+      "horizons",
+      "labor"
+    ]
+  },
+  "5D": {
+    "monday": [
+      "talks",
+      "english"
+    ],
+    "tuesday": [
+      "literature",
+      "russian",
+      "pe",
+      "math",
+      "russian"
+    ],
+    "wednesday": [
+      "russian",
+      "literature",
+      "russian",
+      "math"
+    ],
+    "thursday": [
+      "labor",
+      "math",
+      "russian",
+      "literature"
+    ],
+    "friday": [
+      "math",
+      "russian"
+    ]
+  },
+  "6A": {
+    "monday": [
+      "social",
+      "talks",
+      "algebra",
+      "english",
+      "chemistry",
+      "russian",
+      "algebra"
+    ],
+    "tuesday": [
+      "social",
+      "english",
+      "labor",
+      "russian"
+    ],
+    "wednesday": [
+      "math",
+      "english",
+      "pe",
+      "geography",
+      "russian"
+    ],
+    "thursday": [
+      "social",
+      "pe",
+      "art",
+      "horizons",
+      "math",
+      "russian"
+    ],
+    "friday": [
+      "social",
+      "math",
+      "literature"
+    ]
+  },
+  "6B": {
+    "monday": [
+      "talks",
+      "choreo",
+      "russian",
+      "geography",
+      "english"
+    ],
+    "tuesday": [
+      "algebra",
+      "pe",
+      "russian",
+      "math"
+    ],
+    "wednesday": [
+      "art",
+      "algebra",
+      "geography",
+      "labor",
+      "math"
+    ],
+    "thursday": [
+      "horizons",
+      "pe",
+      "music",
+      "algebra",
+      "probability",
+      "geography",
+      "math"
+    ],
+    "friday": [
+      "english",
+      "math",
+      "russian",
+      "history"
+    ]
+  },
+  "6V": {
+    "monday": [
+      "horizons",
+      "art",
+      "math",
+      "algebra",
+      "russian"
+    ],
+    "tuesday": [
+      "russian",
+      "math",
+      "literature",
+      "talks"
+    ],
+    "wednesday": [
+      "math",
+      "english",
+      "pe",
+      "history"
+    ],
+    "thursday": [
+      "russian",
+      "pe",
+      "math",
+      "english",
+      "algebra"
+    ],
+    "friday": [
+      "horizons",
+      "music",
+      "english",
+      "geography"
+    ]
+  },
+  "6G": {
+    "monday": [],
+    "tuesday": [],
+    "wednesday": [],
+    "thursday": [],
+    "friday": []
+  },
+  "6D": {
+    "monday": [
+      "history",
+      "russian",
+      "chemistry",
+      "math"
+    ],
+    "tuesday": [
+      "art",
+      "geography",
+      "russian",
+      "math"
+    ],
+    "wednesday": [
+      "labor",
+      "russian",
+      "algebra",
+      "pe",
+      "horizons"
+    ],
+    "thursday": [
+      "russian",
+      "algebra",
+      "art",
+      "math"
+    ],
+    "friday": [
+      "music",
+      "math",
+      "geography",
+      "literature",
+      "russian"
+    ]
+  },
+  "7A": {
+    "monday": [
+      "talks",
+      "russian"
+    ],
+    "tuesday": [
+      "russian",
+      "physics",
+      "geography",
+      "russian"
+    ],
+    "wednesday": [
+      "geography",
+      "art",
+      "algebra",
+      "literature",
+      "obzr",
+      "geometry"
+    ],
+    "thursday": [
+      "probability"
+    ],
+    "friday": []
+  },
+  "7B": {
+    "monday": [
+      "talks",
+      "russian"
+    ],
+    "tuesday": [
+      "english"
+    ],
+    "wednesday": [
+      "russian",
+      "physics"
+    ],
+    "thursday": [
+      "art",
+      "probability"
+    ],
+    "friday": [
+      "physics"
+    ]
+  },
+  "7V": {
+    "monday": [
+      "talks",
+      "chemistry",
+      "russian"
+    ],
+    "tuesday": [
+      "labor",
+      "english",
+      "music",
+      "russian",
+      "labor"
+    ],
+    "wednesday": [
+      "geometry"
+    ],
+    "thursday": [
+      "probability",
+      "pe",
+      "horizons"
+    ],
+    "friday": [
+      "labor",
+      "probability",
+      "english",
+      "art",
+      "russian"
+    ]
+  },
+  "7G": {
+    "monday": [
+      "talks",
+      "english",
+      "math",
+      "english"
+    ],
+    "tuesday": [
+      "russian",
+      "english"
+    ],
+    "wednesday": [
+      "geometry"
+    ],
+    "thursday": [
+      "labor",
+      "english",
+      "geometry",
+      "probability",
+      "horizons",
+      "art",
+      "labor"
+    ],
+    "friday": [
+      "art",
+      "music",
+      "geometry",
+      "math"
+    ]
+  },
+  "7D": {
+    "monday": [
+      "talks",
+      "algebra",
+      "english",
+      "history",
+      "russian"
+    ],
+    "tuesday": [
+      "russian",
+      "labor",
+      "geometry",
+      "probability",
+      "algebra",
+      "english"
+    ],
+    "wednesday": [
+      "art",
+      "music",
+      "pe",
+      "physics",
+      "russian",
+      "geometry",
+      "probability"
+    ],
+    "thursday": [
+      "algebra",
+      "art",
+      "world",
+      "pe",
+      "horizons",
+      "choreo",
+      "algebra"
+    ],
+    "friday": [
+      "geometry",
+      "english",
+      "algebra",
+      "russian",
+      "labor",
+      "algebra"
+    ]
+  },
+  "7K": {
+    "monday": [
+      "english",
+      "informatics",
+      "math",
+      "labor",
+      "social",
+      "math",
+      "history"
+    ],
+    "tuesday": [
+      "music",
+      "chemistry",
+      "geography",
+      "chemistry",
+      "probability",
+      "english",
+      "geography",
+      "algebra"
+    ],
+    "wednesday": [
+      "english",
+      "horizons",
+      "pe",
+      "social",
+      "russian"
+    ],
+    "thursday": [
+      "physics",
+      "pe",
+      "horizons",
+      "literature",
+      "math",
+      "horizons"
+    ],
+    "friday": [
+      "obzr",
+      "russian",
+      "geography",
+      "physics",
+      "geography",
+      "math",
+      "russian"
+    ]
+  },
+  "8A": {
+    "monday": [
+      "music",
+      "social",
+      "geography",
+      "english",
+      "obzr",
+      "russian",
+      "labor",
+      "algebra"
+    ],
+    "tuesday": [
+      "physics",
+      "algebra",
+      "history",
+      "russian",
+      "algebra",
+      "physics"
+    ],
+    "wednesday": [
+      "geometry",
+      "obzr",
+      "history",
+      "geometry",
+      "social",
+      "informatics",
+      "russian"
+    ],
+    "thursday": [
+      "english",
+      "pe",
+      "horizons",
+      "history",
+      "russian",
+      "geography",
+      "biology"
+    ],
+    "friday": [
+      "english",
+      "pe",
+      "probability",
+      "chemistry",
+      "algebra",
+      "geography"
+    ]
+  },
+  "8B": {
+    "monday": [],
+    "tuesday": [],
+    "wednesday": [],
+    "thursday": [],
+    "friday": []
+  },
+  "8V": {
+    "monday": [
+      "chemistry",
+      "labor",
+      "history",
+      "russian",
+      "social",
+      "english",
+      "algebra",
+      "social"
+    ],
+    "tuesday": [
+      "physics",
+      "probability",
+      "horizons",
+      "geometry",
+      "history",
+      "english",
+      "algebra",
+      "physics",
+      "obzr",
+      "russian",
+      "art",
+      "russian",
+      "literature",
+      "physics",
+      "algebra",
+      "labor"
+    ],
+    "wednesday": [
+      "chemistry",
+      "geography",
+      "history",
+      "lit_reading",
+      "algebra",
+      "horizons",
+      "russian"
+    ],
+    "thursday": [
+      "russian",
+      "music",
+      "horizons",
+      "chemistry",
+      "social",
+      "pe",
+      "algebra",
+      "geography"
+    ],
+    "friday": []
+  },
+  "8G": {
+    "monday": [
+      "labor",
+      "talks",
+      "physics",
+      "geography",
+      "english",
+      "algebra"
+    ],
+    "tuesday": [
+      "informatics",
+      "obzr",
+      "russian",
+      "history",
+      "geometry",
+      "physics"
+    ],
+    "wednesday": [
+      "labor",
+      "english",
+      "history",
+      "probability",
+      "history",
+      "literature"
+    ],
+    "thursday": [
+      "horizons",
+      "geography",
+      "music",
+      "algebra",
+      "history",
+      "russian",
+      "physics"
+    ],
+    "friday": [
+      "chemistry",
+      "horizons",
+      "algebra",
+      "english",
+      "russian"
+    ]
+  },
+  "8K": {
+    "monday": [
+      "chemistry",
+      "literature",
+      "algebra",
+      "physics",
+      "russian",
+      "physics",
+      "horizons",
+      "history",
+      "geography",
+      "geometry",
+      "physics",
+      "geography"
+    ],
+    "tuesday": [
+      "russian",
+      "physics",
+      "pe",
+      "social",
+      "obzr",
+      "russian"
+    ],
+    "wednesday": [
+      "art",
+      "chemistry",
+      "informatics",
+      "algebra",
+      "probability",
+      "geography",
+      "english",
+      "geography",
+      "chemistry",
+      "english",
+      "horizons",
+      "literature"
+    ],
+    "thursday": [],
+    "friday": []
+  },
+  "9A": {
+    "monday": [
+      "talks",
+      "russian",
+      "algebra"
+    ],
+    "tuesday": [
+      "social",
+      "choreo",
+      "russian"
+    ],
+    "wednesday": [
+      "art",
+      "russian",
+      "english"
+    ],
+    "thursday": [
+      "russian",
+      "chemistry",
+      "russian",
+      "obzr"
+    ],
+    "friday": [
+      "horizons",
+      "art",
+      "russian",
+      "geometry",
+      "pe",
+      "art",
+      "probability",
+      "talks",
+      "social",
+      "geography",
+      "pe",
+      "probability",
+      "labor",
+      "geometry",
+      "russian",
+      "english",
+      "labor"
+    ]
+  },
+  "9B": {
+    "monday": [
+      "talks",
+      "algebra",
+      "physics",
+      "labor",
+      "pe",
+      "literature",
+      "obzr",
+      "social"
+    ],
+    "tuesday": [
+      "geometry",
+      "chemistry",
+      "russian",
+      "pe"
+    ],
+    "wednesday": [
+      "horizons",
+      "russian",
+      "physics",
+      "algebra",
+      "history"
+    ],
+    "thursday": [
+      "physics",
+      "literature",
+      "horizons",
+      "literature",
+      "english",
+      "probability"
+    ],
+    "friday": [
+      "geography",
+      "informatics",
+      "probability",
+      "english",
+      "algebra",
+      "geography"
+    ]
+  },
+  "9V": {
+    "monday": [
+      "talks",
+      "physics",
+      "chemistry",
+      "geography",
+      "algebra"
+    ],
+    "tuesday": [
+      "physics",
+      "horizons",
+      "pe",
+      "geometry",
+      "english"
+    ],
+    "wednesday": [
+      "history",
+      "pe",
+      "geography",
+      "russian",
+      "pe",
+      "geography"
+    ],
+    "thursday": [
+      "art",
+      "russian",
+      "geometry",
+      "algebra",
+      "obzr"
+    ],
+    "friday": [
+      "algebra",
+      "physics",
+      "english",
+      "algebra",
+      "probability"
+    ]
+  },
+  "9G": {
+    "monday": [],
+    "tuesday": [],
+    "wednesday": [],
+    "thursday": [],
+    "friday": []
+  },
+  "9D": {
+    "monday": [],
+    "tuesday": [],
+    "wednesday": [],
+    "thursday": [],
+    "friday": []
+  },
+  "10A": {
+    "monday": [
+      "math",
+      "biology"
+    ],
+    "tuesday": [
+      "biology",
+      "physics"
+    ],
+    "wednesday": [
+      "obzr",
+      "history",
+      "russian",
+      "algebra",
+      "geometry",
+      "geography",
+      "physics",
+      "social",
+      "probability",
+      "horizons"
+    ],
+    "thursday": [
+      "algebra",
+      "geometry",
+      "english",
+      "physics",
+      "social",
+      "project",
+      "russian",
+      "biology",
+      "physics",
+      "pe",
+      "algebra",
+      "obzr",
+      "probability",
+      "horizons",
+      "algebra"
+    ],
+    "friday": [
+      "biology",
+      "pe",
+      "chemistry",
+      "algebra",
+      "probability",
+      "algebra",
+      "english",
+      "russian"
+    ]
+  },
+  "10B": {
+    "monday": [
+      "labor"
+    ],
+    "tuesday": [
+      "algebra",
+      "talks",
+      "algebra",
+      "chemistry",
+      "obzr",
+      "history",
+      "geography"
+    ],
+    "wednesday": [
+      "russian",
+      "geometry",
+      "physics",
+      "algebra"
+    ],
+    "thursday": [
+      "biology",
+      "social",
+      "english",
+      "horizons",
+      "project",
+      "physics",
+      "geometry"
+    ],
+    "friday": [
+      "biology",
+      "informatics",
+      "algebra",
+      "social",
+      "physics",
+      "russian",
+      "pe",
+      "russian",
+      "art",
+      "social",
+      "algebra",
+      "geometry",
+      "pe",
+      "russian",
+      "informatics",
+      "probability"
+    ]
+  },
+  "10V": {
+    "monday": [
+      "social",
+      "talks",
+      "russian",
+      "algebra",
+      "pe",
+      "geography"
+    ],
+    "tuesday": [
+      "social"
+    ],
+    "wednesday": [
+      "history",
+      "social",
+      "literature",
+      "russian",
+      "algebra"
+    ],
+    "thursday": [
+      "social",
+      "algebra",
+      "russian",
+      "geometry",
+      "biology",
+      "social",
+      "history",
+      "social",
+      "russian",
+      "geometry",
+      "geography",
+      "art"
+    ],
+    "friday": [
+      "social",
+      "pe",
+      "english",
+      "physics",
+      "probability",
+      "project",
+      "russian",
+      "history"
+    ]
+  },
+  "10G": {
+    "monday": [
+      "algebra",
+      "talks",
+      "social",
+      "physics",
+      "probability",
+      "russian",
+      "chemistry",
+      "geometry",
+      "labor",
+      "world",
+      "algebra"
+    ],
+    "tuesday": [
+      "history",
+      "algebra"
+    ],
+    "wednesday": [
+      "informatics",
+      "probability",
+      "algebra",
+      "geometry",
+      "history",
+      "social",
+      "literature",
+      "algebra",
+      "obzr",
+      "world",
+      "horizons",
+      "algebra",
+      "social",
+      "geography",
+      "art",
+      "history"
+    ],
+    "thursday": [
+      "algebra",
+      "russian",
+      "literature",
+      "physics",
+      "geometry"
+    ],
+    "friday": [
+      "project",
+      "physics"
+    ]
+  },
+  "11A": {
+    "monday": [
+      "talks",
+      "english",
+      "social"
+    ],
+    "tuesday": [
+      "algebra",
+      "obzr",
+      "russian"
+    ],
+    "wednesday": [
+      "geometry",
+      "english",
+      "russian",
+      "history",
+      "physics",
+      "algebra",
+      "chemistry",
+      "project",
+      "geometry",
+      "physics",
+      "geography",
+      "pe"
+    ],
+    "thursday": [
+      "horizons",
+      "biology",
+      "physics",
+      "russian",
+      "social"
+    ],
+    "friday": [
+      "algebra",
+      "russian",
+      "physics",
+      "history"
+    ]
+  },
+  "11B": {
+    "monday": [
+      "russian",
+      "chemistry",
+      "physics",
+      "social",
+      "english",
+      "probability",
+      "social"
+    ],
+    "tuesday": [
+      "russian",
+      "chemistry",
+      "geography",
+      "russian",
+      "history",
+      "chemistry",
+      "russian"
+    ],
+    "wednesday": [
+      "russian",
+      "algebra",
+      "russian",
+      "pe",
+      "algebra",
+      "obzr",
+      "art",
+      "history",
+      "russian",
+      "informatics",
+      "russian",
+      "algebra"
+    ],
+    "thursday": [
+      "russian",
+      "horizons"
+    ],
+    "friday": [
+      "chemistry",
+      "geometry",
+      "russian",
+      "algebra"
+    ]
+  },
+  "11V": {
+    "monday": [
+      "social"
+    ],
+    "tuesday": [
+      "russian",
+      "physics",
+      "russian"
+    ],
+    "wednesday": [
+      "geography",
+      "geometry",
+      "english",
+      "geometry",
+      "algebra",
+      "russian"
+    ],
+    "thursday": [
+      "russian",
+      "pe",
+      "history",
+      "horizons",
+      "russian",
+      "geometry",
+      "physics",
+      "algebra"
+    ],
+    "friday": [
+      "social",
+      "algebra",
+      "informatics",
+      "russian",
+      "algebra"
+    ]
+  },
+  "11G": {
+    "monday": [],
+    "tuesday": [],
+    "wednesday": [],
+    "thursday": [],
+    "friday": []
+  }
+}

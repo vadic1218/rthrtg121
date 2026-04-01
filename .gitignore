@@ -5,3 +5,7 @@ __pycache__/
 school_bot.db
 rendered_pages/
 tmp_previews/
+tmp_crops/
+tmp_crops2/
+bot_new.py
+bot_fixed.py
