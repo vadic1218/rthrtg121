@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import os
-import re
 from pathlib import Path
 
 import telebot
@@ -21,31 +20,26 @@ if not BOT_TOKEN:
 bot = telebot.TeleBot(BOT_TOKEN)
 init_db()
 
-PDF_1_4 = BASE_DIR / "assets" / "pdf" / "Raspisanie_1_4_klassy.pdf"
-PDF_5_9 = BASE_DIR / "assets" / "pdf" / "Raspisanie_5_9_klassy.pdf"
-PDF_10_11 = BASE_DIR / "assets" / "pdf" / "Raspisanie_10_11_klassy.pdf"
-
-BELL_SCHEDULE_IMAGE = BASE_DIR / "assets" / "images" / "raspisanie_zvonkov.png"
-VACATIONS_IMAGE = BASE_DIR / "assets" / "images" / "kanikuly.png"
+ASSETS_DIR = BASE_DIR / "assets"
+CLASS_IMAGES_DIR = ASSETS_DIR / "images" / "classes"
+BELL_SCHEDULE_IMAGE = ASSETS_DIR / "images" / "raspisanie_zvonkov.png"
+VACATIONS_IMAGE = ASSETS_DIR / "images" / "kanikuly.png"
 
 MENU_SCHEDULE = "Расписание уроков"
 MENU_BELLS = "Расписание звонков"
 MENU_VACATIONS = "Каникулы"
 MENU_HOLIDAYS = "Праздничные дни"
-CLASS_GROUP_1_4 = "1–4 классы"
-CLASS_GROUP_5_9 = "5–9 классы"
-CLASS_GROUP_10_11 = "10–11 классы"
-CLASS_GROUP_BACK = "Назад"
+BACK_BUTTON = "Назад"
+
+GRADE_BUTTONS = [str(i) for i in range(1, 12)]
+LETTER_BUTTONS = ["А", "Б", "В", "Г", "Д"]
+LETTER_TO_FILE = {"А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D"}
 
 WELCOME_TEXT = (
     "Здравствуйте!\n\n"
     "Ученик ГБУ ОО ЗО «СОШ №15 им. Графа Е.Ф. Комаровского»,\n"
     "г. Мелитополь, этот бот создан для вашего удобства.\n\n"
     "Выберите нужный раздел кнопками ниже."
-)
-
-CLASS_PROMPT = (
-    "Выберите, к какой группе относится ваш класс."
 )
 
 HOLIDAYS_TEXT = (
@@ -57,8 +51,11 @@ HOLIDAYS_TEXT = (
     "12 июня — День России\n"
     "4 ноября — День народного единства\n"
     "13 апреля — дополнительный нерабочий праздничный день\n"
-    "1 июня — дополнительный нерабочий праздничный ден"
+    "1 июня — дополнительный нерабочий праздничный день"
 )
+
+pending_grade: dict[int, str] = {}
+
 
 def build_main_keyboard() -> types.ReplyKeyboardMarkup:
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -67,11 +64,20 @@ def build_main_keyboard() -> types.ReplyKeyboardMarkup:
     return keyboard
 
 
-def build_schedule_keyboard() -> types.ReplyKeyboardMarkup:
+def build_grade_keyboard() -> types.ReplyKeyboardMarkup:
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.row(CLASS_GROUP_1_4, CLASS_GROUP_5_9)
-    keyboard.row(CLASS_GROUP_10_11)
-    keyboard.row(CLASS_GROUP_BACK)
+    keyboard.row("1", "2", "3", "4")
+    keyboard.row("5", "6", "7", "8")
+    keyboard.row("9", "10", "11")
+    keyboard.row(BACK_BUTTON)
+    return keyboard
+
+
+def build_letter_keyboard(grade: str) -> types.ReplyKeyboardMarkup:
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard.row(f"{grade}А", f"{grade}Б", f"{grade}В")
+    keyboard.row(f"{grade}Г", f"{grade}Д")
+    keyboard.row(BACK_BUTTON)
     return keyboard
 
 
@@ -83,77 +89,82 @@ def remember_user(message: types.Message) -> None:
     )
 
 
-def send_schedule_for_group(message: types.Message, group_name: str, pdf_path: Path) -> None:
-    if not pdf_path.exists():
-        bot.reply_to(
-            message,
-            "Не удалось найти файл с расписанием.",
-            reply_markup=build_main_keyboard(),
+def parse_class_choice(text: str) -> tuple[str, str] | None:
+    raw = (text or "").strip().upper().replace(" ", "")
+    if len(raw) < 2:
+        return None
+    grade = raw[:-1]
+    letter = raw[-1]
+    if grade not in GRADE_BUTTONS or letter not in LETTER_TO_FILE:
+        return None
+    return grade, letter
+
+
+def class_image_path(grade: str, letter: str) -> Path:
+    return CLASS_IMAGES_DIR / f"{grade}{LETTER_TO_FILE[letter]}.png"
+
+
+def send_class_schedule(message: types.Message, grade: str, letter: str) -> None:
+    class_name = f"{grade}{letter}"
+    image_path = class_image_path(grade, letter)
+    if not image_path.exists():
+        bot.send_message(
+            message.chat.id,
+            f"Расписание для класса {class_name} пока не найдено.\n"
+            "Попробуйте выбрать другую букву.",
+            reply_markup=build_letter_keyboard(grade),
         )
         return
 
-    save_class(message.from_user.id, group_name)
-    with pdf_path.open("rb") as pdf_file:
-        bot.send_document(
+    save_class(message.from_user.id, class_name)
+    with image_path.open("rb") as image_file:
+        bot.send_photo(
             message.chat.id,
-            pdf_file,
-            visible_file_name=pdf_path.name,
-            caption=f"Расписание уроков для группы {group_name}.",
+            image_file,
+            caption=f"Расписание уроков для класса {class_name}.",
+            reply_markup=build_main_keyboard(),
         )
 
 
 @bot.message_handler(commands=["start", "help"])
 def start_handler(message: types.Message) -> None:
     remember_user(message)
-    bot.send_message(
-        message.chat.id,
-        WELCOME_TEXT,
-        reply_markup=build_main_keyboard(),
-    )
+    pending_grade.pop(message.from_user.id, None)
+    bot.send_message(message.chat.id, WELCOME_TEXT, reply_markup=build_main_keyboard())
 
 
 @bot.message_handler(func=lambda message: (message.text or "").strip() == MENU_SCHEDULE)
 def lessons_schedule_handler(message: types.Message) -> None:
     remember_user(message)
+    pending_grade.pop(message.from_user.id, None)
     saved_class = get_class(message.from_user.id)
+    text = "Выберите номер класса."
     if saved_class:
-        text = (
-            f"У вас сохранена группа {saved_class}.\n"
-            "Если хотите открыть другое расписание, выберите другую группу.\n\n"
-            f"{CLASS_PROMPT}"
-        )
-    else:
-        text = CLASS_PROMPT
-
-    bot.send_message(message.chat.id, text, reply_markup=build_schedule_keyboard())
+        text = f"У вас сохранен последний выбранный класс: {saved_class}.\n\nВыберите номер класса."
+    bot.send_message(message.chat.id, text, reply_markup=build_grade_keyboard())
 
 
-@bot.message_handler(func=lambda message: (message.text or "").strip() == CLASS_GROUP_1_4)
-def schedule_group_1_4_handler(message: types.Message) -> None:
+@bot.message_handler(func=lambda message: (message.text or "").strip() in GRADE_BUTTONS)
+def grade_choice_handler(message: types.Message) -> None:
     remember_user(message)
-    send_schedule_for_group(message, CLASS_GROUP_1_4, PDF_1_4)
-
-
-@bot.message_handler(func=lambda message: (message.text or "").strip() == CLASS_GROUP_5_9)
-def schedule_group_5_9_handler(message: types.Message) -> None:
-    remember_user(message)
-    send_schedule_for_group(message, CLASS_GROUP_5_9, PDF_5_9)
-
-
-@bot.message_handler(func=lambda message: (message.text or "").strip() == CLASS_GROUP_10_11)
-def schedule_group_10_11_handler(message: types.Message) -> None:
-    remember_user(message)
-    send_schedule_for_group(message, CLASS_GROUP_10_11, PDF_10_11)
-
-
-@bot.message_handler(func=lambda message: (message.text or "").strip() == CLASS_GROUP_BACK)
-def schedule_back_handler(message: types.Message) -> None:
-    remember_user(message)
+    grade = (message.text or "").strip()
+    pending_grade[message.from_user.id] = grade
     bot.send_message(
         message.chat.id,
-        "Главное меню.",
-        reply_markup=build_main_keyboard(),
+        f"Теперь выберите букву для {grade} класса.",
+        reply_markup=build_letter_keyboard(grade),
     )
+
+
+@bot.message_handler(func=lambda message: parse_class_choice(message.text or "") is not None)
+def class_choice_handler(message: types.Message) -> None:
+    remember_user(message)
+    parsed = parse_class_choice(message.text or "")
+    if parsed is None:
+        return
+    grade, letter = parsed
+    pending_grade.pop(message.from_user.id, None)
+    send_class_schedule(message, grade, letter)
 
 
 @bot.message_handler(func=lambda message: (message.text or "").strip() == MENU_BELLS)
@@ -174,6 +185,13 @@ def vacations_handler(message: types.Message) -> None:
 def holidays_handler(message: types.Message) -> None:
     remember_user(message)
     bot.send_message(message.chat.id, HOLIDAYS_TEXT)
+
+
+@bot.message_handler(func=lambda message: (message.text or "").strip() == BACK_BUTTON)
+def back_handler(message: types.Message) -> None:
+    remember_user(message)
+    pending_grade.pop(message.from_user.id, None)
+    bot.send_message(message.chat.id, "Главное меню.", reply_markup=build_main_keyboard())
 
 
 @bot.message_handler(func=lambda message: True)

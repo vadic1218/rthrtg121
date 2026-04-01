@@ -3,3 +3,5 @@
 __pycache__/
 *.pyc
 school_bot.db
+rendered_pages/
+tmp_previews/
