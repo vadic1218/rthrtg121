@@ -1,4 +1,4 @@
-# School Bot
+﻿# School Bot
 
 Telegram-бот для школьной информации:
 
@@ -7,7 +7,7 @@ Telegram-бот для школьной информации:
 - каникулы
 - праздничные дни
 
-## Запуск
+## Локальный запуск
 
 1. Создайте `.env` рядом с `bot.py`
 2. Добавьте:
@@ -28,3 +28,13 @@ python -m venv .venv
 ```powershell
 .\.venv\Scripts\python bot.py
 ```
+
+## Railway
+
+Для Railway нужен только один обязательный секрет:
+
+```env
+BOT_TOKEN=...
+```
+
+Деплой идет через `Dockerfile`, бот запускается в режиме long polling.

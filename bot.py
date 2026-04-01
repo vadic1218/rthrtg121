@@ -32,6 +32,10 @@ MENU_SCHEDULE = "Расписание уроков"
 MENU_BELLS = "Расписание звонков"
 MENU_VACATIONS = "Каникулы"
 MENU_HOLIDAYS = "Праздничные дни"
+CLASS_GROUP_1_4 = "1–4 классы"
+CLASS_GROUP_5_9 = "5–9 классы"
+CLASS_GROUP_10_11 = "10–11 классы"
+CLASS_GROUP_BACK = "Назад"
 
 WELCOME_TEXT = (
     "Здравствуйте!\n\n"
@@ -41,11 +45,7 @@ WELCOME_TEXT = (
 )
 
 CLASS_PROMPT = (
-    "Напишите, в каком классе вы учитесь.\n\n"
-    "Примеры:\n"
-    "• 3 класс\n"
-    "• 7\n"
-    "• 10А"
+    "Выберите, к какой группе относится ваш класс."
 )
 
 HOLIDAYS_TEXT = (
@@ -60,13 +60,18 @@ HOLIDAYS_TEXT = (
     "1 июня — дополнительный нерабочий праздничный ден"
 )
 
-pending_class_request: set[int] = set()
-
-
 def build_main_keyboard() -> types.ReplyKeyboardMarkup:
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.row(MENU_SCHEDULE, MENU_BELLS)
     keyboard.row(MENU_VACATIONS, MENU_HOLIDAYS)
+    return keyboard
+
+
+def build_schedule_keyboard() -> types.ReplyKeyboardMarkup:
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard.row(CLASS_GROUP_1_4, CLASS_GROUP_5_9)
+    keyboard.row(CLASS_GROUP_10_11)
+    keyboard.row(CLASS_GROUP_BACK)
     return keyboard
 
 
@@ -78,59 +83,28 @@ def remember_user(message: types.Message) -> None:
     )
 
 
-def normalize_class_input(text: str) -> str | None:
-    cleaned = (text or "").strip().lower()
-    cleaned = cleaned.replace("класс", "").replace(" ", "")
-    match = re.search(r"(\d{1,2})([а-яa-z]?)", cleaned, re.IGNORECASE)
-    if not match:
-        return None
-
-    grade = int(match.group(1))
-    letter = match.group(2).upper()
-    if not (1 <= grade <= 11):
-        return None
-    return f"{grade}{letter}"
-
-
-def resolve_schedule_pdf(class_name: str) -> Path | None:
-    match = re.match(r"(\d{1,2})", class_name)
-    if not match:
-        return None
-
-    grade = int(match.group(1))
-    if 1 <= grade <= 4:
-        return PDF_1_4
-    if 5 <= grade <= 9:
-        return PDF_5_9
-    if 10 <= grade <= 11:
-        return PDF_10_11
-    return None
-
-
-def send_schedule_for_class(message: types.Message, class_name: str) -> None:
-    pdf_path = resolve_schedule_pdf(class_name)
-    if not pdf_path or not pdf_path.exists():
+def send_schedule_for_group(message: types.Message, group_name: str, pdf_path: Path) -> None:
+    if not pdf_path.exists():
         bot.reply_to(
             message,
-            "Не удалось найти файл с расписанием для этого класса.",
+            "Не удалось найти файл с расписанием.",
             reply_markup=build_main_keyboard(),
         )
         return
 
-    save_class(message.from_user.id, class_name)
+    save_class(message.from_user.id, group_name)
     with pdf_path.open("rb") as pdf_file:
         bot.send_document(
             message.chat.id,
             pdf_file,
             visible_file_name=pdf_path.name,
-            caption=f"Расписание уроков для {class_name} класса.",
+            caption=f"Расписание уроков для группы {group_name}.",
         )
 
 
 @bot.message_handler(commands=["start", "help"])
 def start_handler(message: types.Message) -> None:
     remember_user(message)
-    pending_class_request.discard(message.from_user.id)
     bot.send_message(
         message.chat.id,
         WELCOME_TEXT,
@@ -144,15 +118,42 @@ def lessons_schedule_handler(message: types.Message) -> None:
     saved_class = get_class(message.from_user.id)
     if saved_class:
         text = (
-            f"У вас сохранен {saved_class} класс.\n"
-            "Если хотите получить расписание для другого класса, просто напишите новый класс.\n\n"
+            f"У вас сохранена группа {saved_class}.\n"
+            "Если хотите открыть другое расписание, выберите другую группу.\n\n"
             f"{CLASS_PROMPT}"
         )
     else:
         text = CLASS_PROMPT
 
-    pending_class_request.add(message.from_user.id)
-    bot.send_message(message.chat.id, text, reply_markup=build_main_keyboard())
+    bot.send_message(message.chat.id, text, reply_markup=build_schedule_keyboard())
+
+
+@bot.message_handler(func=lambda message: (message.text or "").strip() == CLASS_GROUP_1_4)
+def schedule_group_1_4_handler(message: types.Message) -> None:
+    remember_user(message)
+    send_schedule_for_group(message, CLASS_GROUP_1_4, PDF_1_4)
+
+
+@bot.message_handler(func=lambda message: (message.text or "").strip() == CLASS_GROUP_5_9)
+def schedule_group_5_9_handler(message: types.Message) -> None:
+    remember_user(message)
+    send_schedule_for_group(message, CLASS_GROUP_5_9, PDF_5_9)
+
+
+@bot.message_handler(func=lambda message: (message.text or "").strip() == CLASS_GROUP_10_11)
+def schedule_group_10_11_handler(message: types.Message) -> None:
+    remember_user(message)
+    send_schedule_for_group(message, CLASS_GROUP_10_11, PDF_10_11)
+
+
+@bot.message_handler(func=lambda message: (message.text or "").strip() == CLASS_GROUP_BACK)
+def schedule_back_handler(message: types.Message) -> None:
+    remember_user(message)
+    bot.send_message(
+        message.chat.id,
+        "Главное меню.",
+        reply_markup=build_main_keyboard(),
+    )
 
 
 @bot.message_handler(func=lambda message: (message.text or "").strip() == MENU_BELLS)
@@ -173,22 +174,6 @@ def vacations_handler(message: types.Message) -> None:
 def holidays_handler(message: types.Message) -> None:
     remember_user(message)
     bot.send_message(message.chat.id, HOLIDAYS_TEXT)
-
-
-@bot.message_handler(func=lambda message: message.from_user.id in pending_class_request)
-def class_input_handler(message: types.Message) -> None:
-    remember_user(message)
-    class_name = normalize_class_input(message.text or "")
-    if not class_name:
-        bot.reply_to(
-            message,
-            "Не удалось распознать класс. Напишите, например: 5 класс, 8 или 10А.",
-            reply_markup=build_main_keyboard(),
-        )
-        return
-
-    pending_class_request.discard(message.from_user.id)
-    send_schedule_for_class(message, class_name)
 
 
 @bot.message_handler(func=lambda message: True)
