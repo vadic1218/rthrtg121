@@ -54,7 +54,7 @@ WELCOME_TEXT = (
     "Здравствуйте!\n\n"
     "Ученик ГБУ ОО ЗО «СОШ №15 им. Графа Е.Ф. Комаровского»,\n"
     "г. Мелитополь, этот бот создан для вашего удобства.\n\n"
-    "Нажмите «Расписание уроков», чтобы выбрать класс и день недели."
+    "Нажмите «Старт», чтобы открыть главное меню."
 )
 
 HOLIDAYS_TEXT = (
@@ -75,9 +75,14 @@ pending_class: dict[int, str] = {}
 
 def build_main_keyboard() -> types.ReplyKeyboardMarkup:
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.row(MENU_START)
     keyboard.row(MENU_SCHEDULE, MENU_BELLS)
     keyboard.row(MENU_VACATIONS, MENU_HOLIDAYS)
+    return keyboard
+
+
+def build_start_keyboard() -> types.ReplyKeyboardMarkup:
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard.row(MENU_START)
     return keyboard
 
 
@@ -143,12 +148,15 @@ def start_handler(message: types.Message) -> None:
     remember_user(message)
     pending_grade.pop(message.from_user.id, None)
     pending_class.pop(message.from_user.id, None)
-    bot.send_message(message.chat.id, WELCOME_TEXT, reply_markup=build_main_keyboard())
+    bot.send_message(message.chat.id, WELCOME_TEXT, reply_markup=build_start_keyboard())
 
 
 @bot.message_handler(func=lambda message: (message.text or "").strip() == MENU_START)
 def menu_start_handler(message: types.Message) -> None:
-    start_handler(message)
+    remember_user(message)
+    pending_grade.pop(message.from_user.id, None)
+    pending_class.pop(message.from_user.id, None)
+    bot.send_message(message.chat.id, "Главное меню.", reply_markup=build_main_keyboard())
 
 
 @bot.message_handler(func=lambda message: (message.text or "").strip() == MENU_SCHEDULE)
@@ -176,11 +184,30 @@ def grade_choice_handler(message: types.Message) -> None:
     )
 
 
-@bot.message_handler(func=lambda message: parse_class_choice(message.text or "") is not None)
+@bot.message_handler(
+    func=lambda message: (
+        parse_class_choice(message.text or "") is not None
+        or (
+            pending_grade.get(message.from_user.id) is not None
+            and (message.text or "").strip() in letters_for_grade(pending_grade.get(message.from_user.id, ""))
+        )
+    )
+)
 def class_choice_handler(message: types.Message) -> None:
     remember_user(message)
-    class_name = parse_class_choice(message.text or "")
+    grade = pending_grade.get(message.from_user.id)
+    raw_text = (message.text or "").strip()
+    if grade and raw_text in letters_for_grade(grade):
+        class_name = f"{grade}{raw_text}"
+    else:
+        class_name = parse_class_choice(message.text or "")
     if class_name is None:
+        if grade:
+            bot.send_message(
+                message.chat.id,
+                "Выберите букву класса кнопками ниже.",
+                reply_markup=build_letter_keyboard(grade),
+            )
         return
     pending_grade.pop(message.from_user.id, None)
     pending_class[message.from_user.id] = class_name
@@ -242,7 +269,7 @@ def back_handler(message: types.Message) -> None:
 @bot.message_handler(func=lambda message: True)
 def fallback_handler(message: types.Message) -> None:
     remember_user(message)
-    bot.reply_to(message, "Используйте кнопки меню ниже.", reply_markup=build_main_keyboard())
+    bot.reply_to(message, "Используйте кнопки меню ниже.", reply_markup=build_start_keyboard())
 
 
 if __name__ == "__main__":
