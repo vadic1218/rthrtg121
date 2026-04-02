@@ -80,12 +80,6 @@ def build_main_keyboard() -> types.ReplyKeyboardMarkup:
     return keyboard
 
 
-def build_start_keyboard() -> types.ReplyKeyboardMarkup:
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.row(MENU_START)
-    return keyboard
-
-
 def build_grade_keyboard() -> types.ReplyKeyboardMarkup:
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.row("1", "2", "3", "4")
@@ -148,7 +142,7 @@ def start_handler(message: types.Message) -> None:
     remember_user(message)
     pending_grade.pop(message.from_user.id, None)
     pending_class.pop(message.from_user.id, None)
-    bot.send_message(message.chat.id, WELCOME_TEXT, reply_markup=build_start_keyboard())
+    bot.send_message(message.chat.id, WELCOME_TEXT, reply_markup=build_main_keyboard())
 
 
 @bot.message_handler(func=lambda message: (message.text or "").strip() == MENU_START)

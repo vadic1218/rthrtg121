@@ -1910,11 +1910,16 @@ SCHEDULES = parse_schedules(RAW_SCHEDULES)
 
 
 def letters_for_grade(grade: str) -> list[str]:
-    prefix = str(grade)
-    letters = []
+    grade = str(grade)
+    letters: list[str] = []
+    pattern = re.compile(r"^(\d{1,2})([\u0410-\u042f\u0401])$")
     for class_name in SCHEDULES:
-        if class_name.startswith(prefix):
-            letters.append(class_name[len(prefix):])
-    order = ["?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?"]
+        match = pattern.match(class_name)
+        if not match:
+            continue
+        class_grade, class_letter = match.groups()
+        if class_grade == grade:
+            letters.append(class_letter)
+    order = [chr(code) for code in (0x0410, 0x0411, 0x0412, 0x0413, 0x0414, 0x0415, 0x0416, 0x0417, 0x0418, 0x041A, 0x041B, 0x041C, 0x041D, 0x041E, 0x041F)]
     index_map = {letter: idx for idx, letter in enumerate(order)}
     return sorted(set(letters), key=lambda item: index_map.get(item, 999))
