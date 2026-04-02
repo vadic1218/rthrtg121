@@ -25,7 +25,6 @@ ASSETS_DIR = BASE_DIR / "assets"
 BELL_SCHEDULE_IMAGE = ASSETS_DIR / "images" / "raspisanie_zvonkov.png"
 VACATIONS_IMAGE = ASSETS_DIR / "images" / "kanikuly.png"
 
-MENU_START = "Старт"
 MENU_SCHEDULE = "Расписание уроков"
 MENU_BELLS = "Расписание звонков"
 MENU_VACATIONS = "Каникулы"
@@ -54,7 +53,7 @@ WELCOME_TEXT = (
     "Здравствуйте!\n\n"
     "Ученик ГБУ ОО ЗО «СОШ №15 им. Графа Е.Ф. Комаровского»,\n"
     "г. Мелитополь, этот бот создан для вашего удобства.\n\n"
-    "Нажмите «Старт», чтобы открыть главное меню."
+    "Выберите нужный раздел кнопками ниже."
 )
 
 HOLIDAYS_TEXT = (
@@ -67,6 +66,15 @@ HOLIDAYS_TEXT = (
     "4 ноября — День народного единства\n"
     "13 апреля — дополнительный нерабочий праздничный день\n"
     "1 июня — дополнительный нерабочий праздничный день"
+)
+
+VACATIONS_TEXT = (
+    "Каникулы.\n\n"
+    "Осенние: 28 октября – 4 ноября 2024\n"
+    "Зимние: 30 декабря 2024 – 12 января 2025\n"
+    "Дополнительные (1-х классов): 17 – 24 февраля 2025\n"
+    "Весенние: 24 марта – 31 марта 2025\n"
+    "Летние: ориентировочно с 26 мая 2025 до 31 августа 2025"
 )
 
 pending_grade: dict[int, str] = {}
@@ -145,14 +153,6 @@ def start_handler(message: types.Message) -> None:
     bot.send_message(message.chat.id, WELCOME_TEXT, reply_markup=build_main_keyboard())
 
 
-@bot.message_handler(func=lambda message: (message.text or "").strip() == MENU_START)
-def menu_start_handler(message: types.Message) -> None:
-    remember_user(message)
-    pending_grade.pop(message.from_user.id, None)
-    pending_class.pop(message.from_user.id, None)
-    bot.send_message(message.chat.id, "Главное меню.", reply_markup=build_main_keyboard())
-
-
 @bot.message_handler(func=lambda message: (message.text or "").strip() == MENU_SCHEDULE)
 def lessons_schedule_handler(message: types.Message) -> None:
     remember_user(message)
@@ -180,29 +180,22 @@ def grade_choice_handler(message: types.Message) -> None:
 
 @bot.message_handler(
     func=lambda message: (
-        parse_class_choice(message.text or "") is not None
-        or (
-            pending_grade.get(message.from_user.id) is not None
-            and (message.text or "").strip() in letters_for_grade(pending_grade.get(message.from_user.id, ""))
-        )
+        pending_grade.get(message.from_user.id) is not None
+        and (message.text or "").strip() in letters_for_grade(pending_grade.get(message.from_user.id, ""))
     )
 )
 def class_choice_handler(message: types.Message) -> None:
     remember_user(message)
     grade = pending_grade.get(message.from_user.id)
     raw_text = (message.text or "").strip()
-    if grade and raw_text in letters_for_grade(grade):
-        class_name = f"{grade}{raw_text}"
-    else:
-        class_name = parse_class_choice(message.text or "")
-    if class_name is None:
-        if grade:
-            bot.send_message(
-                message.chat.id,
-                "Выберите букву класса кнопками ниже.",
-                reply_markup=build_letter_keyboard(grade),
-            )
+    if not grade or raw_text not in letters_for_grade(grade):
+        bot.send_message(
+            message.chat.id,
+            "Выберите букву класса кнопками ниже.",
+            reply_markup=build_letter_keyboard(grade or ""),
+        )
         return
+    class_name = f"{grade}{raw_text}"
     pending_grade.pop(message.from_user.id, None)
     pending_class[message.from_user.id] = class_name
     save_class(message.from_user.id, class_name)
@@ -235,7 +228,7 @@ def bell_schedule_handler(message: types.Message) -> None:
 def vacations_handler(message: types.Message) -> None:
     remember_user(message)
     with VACATIONS_IMAGE.open("rb") as image:
-        bot.send_photo(message.chat.id, image, caption="Каникулы.")
+        bot.send_photo(message.chat.id, image, caption=VACATIONS_TEXT)
 
 
 @bot.message_handler(func=lambda message: (message.text or "").strip() == MENU_HOLIDAYS)
@@ -263,7 +256,7 @@ def back_handler(message: types.Message) -> None:
 @bot.message_handler(func=lambda message: True)
 def fallback_handler(message: types.Message) -> None:
     remember_user(message)
-    bot.reply_to(message, "Используйте кнопки меню ниже.", reply_markup=build_start_keyboard())
+    bot.reply_to(message, "Используйте кнопки меню ниже.", reply_markup=build_main_keyboard())
 
 
 if __name__ == "__main__":
