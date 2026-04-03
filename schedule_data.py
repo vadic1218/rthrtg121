@@ -1906,7 +1906,29 @@ def parse_schedules(raw_text: str) -> dict[str, dict[str, list[str]]]:
     return result
 
 
-SCHEDULES = parse_schedules(RAW_SCHEDULES)
+def _repair_text(value: str) -> str:
+    try:
+        return value.encode("latin1").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return value
+
+
+DAYS = [_repair_text(day) for day in DAYS]
+RAW_SCHEDULES = _repair_text(RAW_SCHEDULES)
+
+CLASS_LETTER_MAP = {"?": "?", "?": "?", "?": "?", "?": "?", "?": "?", "?": "?", "?": "?"}
+
+
+def _normalize_class_name(class_name: str) -> str:
+    if not class_name:
+        return class_name
+    return class_name[:-1] + CLASS_LETTER_MAP.get(class_name[-1], class_name[-1])
+
+
+SCHEDULES = {
+    _normalize_class_name(class_name): days
+    for class_name, days in parse_schedules(RAW_SCHEDULES).items()
+}
 
 
 def letters_for_grade(grade: str) -> list[str]:
